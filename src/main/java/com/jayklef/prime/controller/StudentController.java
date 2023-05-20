@@ -6,6 +6,7 @@ import com.jayklef.prime.exception.StudentNotFoundException;
 import com.jayklef.prime.service.DepartmentService;
 import com.jayklef.prime.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -99,5 +100,18 @@ public class StudentController {
         return "redirect:/students";
     }
 
+    @GetMapping("/page/{pageNo}")
+    public String studentsPagination(@PathVariable("pageNo") int pageNo, Model model){
+        int pageSize = 5;
 
+        Page<Student> studentPage = studentService.studentsPagination(pageNo, pageSize);
+        List<Student> studentList = studentPage.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", studentPage.getTotalPages());
+        model.addAttribute("totalItems", studentPage.getTotalElements());
+        model.addAttribute("studentList", studentList);
+
+        return "students";
+    }
 }

@@ -131,4 +131,9 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(studentInDb);
     }
 
+    @Override
+    public Page<Student> studentsPagination(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        return studentRepository.findAll(pageable);
+    }
 }

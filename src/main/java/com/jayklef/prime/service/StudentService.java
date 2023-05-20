@@ -18,5 +18,6 @@ public interface StudentService {
 
     Student updateStudent(Integer id);
 
+    Page<Student> studentsPagination(int pageNo, int pageSize);
 
 }
