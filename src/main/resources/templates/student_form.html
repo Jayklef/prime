@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>[[${pageTitle}]]</title>
+  <link rel="stylesheet" href="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="javascript:void(0)">Student Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/students}">Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/departments}">Departments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)">Login</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="text" placeholder="Search">
+                <button class="btn btn-primary" type="button">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 container justify-content-center card">
+                <h2>[[${pageTitle}]]</h2>
+                <div class="card-body">
+                    <form th:action="@{/students/save}" method="post" th:object="${student}">
+                        <input type="hidden" th:field="*{id}">
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="form5Example1">Firstname</label>
+                            <input type="text" id="form5Example1" th:field="*{firstname}" class="form-control">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="form5Example2">Lastname</label>
+                            <input type="text" id="form5Example2" th:field="*{lastname}" class="form-control">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="form5Example3">Email</label>
+                            <input type="text" id="form5Example3" th:field="*{email}" class="form-control">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="form5Example4">Telephone</label>
+                            <input type="text" id="form5Example4" th:field="*{telephone}" class="form-control">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="form5Example5">Birthdate</label>
+                            <input type="Date" id="form5Example5" th:field="*{dateOfBirth}" class="form-control">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="form5Example6">Address</label>
+                            <input type="text" id="form5Example6" th:field="*{address}" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="form5Example7">Department</label>
+                            <select th:field="*{department}" class="form-control" id="form5Example7">
+                                <th:block th:each="department : ${departments}">
+                                    <option th:text="${department.name}" th:value="${department.id}"/>
+                                </th:block>
+                            </select>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary m-2">Save</button>
+                            <button type="button" class="btn btn-danger m-2" onclick="cancelFom()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="">
+        <footer class="text-center text-white" style="background-color: #0a4275;">
+            <div class="container p-4 pb-0">
+                <section class="">
+                    <p class="d-flex justify-content-center align-items-center">
+                        <span class="me-3">Register for Usage</span>
+                        <button type="button" class="btn btn-outline-light btn-rounded">
+                            Sign up!
+                        </button>
+                    </p>
+                </section>
+            </div>
+
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © August, 2020 Copyright:
+                <a class="text-white" href="#">jerrycodes.com</a>
+            </div>
+        </footer>
+    </section>
+
+<script type="text/javascript">
+    function cancelFom(){
+        window.location="[[@{/students}]]"
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+
+
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/students
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 3MB
+      enabled: true
+server:
+  port: 7500
+
+

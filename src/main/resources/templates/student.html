@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Students</title>
+    <link rel="stylesheet" href="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="javascript:void(0)">Student Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/students}">Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/departments}">Departments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)">Login</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="text" placeholder="Search">
+                <button class="btn btn-primary" type="button">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <h2>Student Details</h2>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <a class="btn btn-primary btn-sm mb-3" th:href="@{/students/new}">Add New Student</a>
+        </div>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="bg-dark text-white">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Date of Birth</th>
+                <th>Address</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>[[${student.id}]]</td>
+                    <td>[[${student.firstname}]]</td>
+                    <td>[[${student.lastname}]]</td>
+                    <td>[[${student.email}]]</td>
+                    <td>[[${student.telephone}]]</td>
+                    <td>[[${student.dateOfBirth}]]</td>
+                    <td>[[${student.address}]]</td>
+                    <td>[[${student.department.name}]]</td>
+                    <td>
+                        <a class="btn btn-primary me-3" th:href="@{'/students/edit/' + ${student.id}}">Update</a>
+                        <a class="btn btn-danger me-3" th:href="@{'/students/delete/' + ${student.id}}">Delete</a>
+                        <a class="btn btn-info me-3" th:href="@{'/students/view/' + ${student.id}}">View</a>
+                    </td>
+                </tr>
+            </th:block>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<section class="">
+    <footer class="text-center text-white" style="background-color: #0a4275;">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">Register for Usage</span>
+                    <button type="button" class="btn btn-outline-light btn-rounded">
+                        Sign up!
+                    </button>
+                </p>
+            </section>
+        </div>
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © August, 2020 Copyright:
+            <a class="text-white" href="#">jerrycodes.com</a>
+        </div>
+    </footer>
+</section>
+</body>
+</html>
