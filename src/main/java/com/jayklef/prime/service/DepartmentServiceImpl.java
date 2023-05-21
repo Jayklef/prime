@@ -44,9 +44,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department updateDepartment(Integer id) {
         Department deptInDb = departmentRepository.findById(id).get();
         //Department updatedDepartment = departmentRepository.findById(existingDepartment.getId());
-     /*   if (Objects.nonNull (deptInDb.getName()) &&
-        !"".equalsIgnoreCase(deptInDb.getName())){
-            deptInDb.setName(deptInDb.getName());
+    /*    if (Objects.nonNull (department.getName()) &&
+        !"".equalsIgnoreCase(department.getName())){
+            deptInDb.setName(department.getName());
         }
 
         if (Objects.nonNull(deptInDb.getTelephone()) &&

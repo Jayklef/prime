@@ -41,13 +41,14 @@ public class DepartmentController {
         return "redirect:/departments";
     }
 
-    @GetMapping("/departments/edit/{id}")
-    public String updateDepartment(@PathVariable("id") Integer id, Model model, RedirectAttributes attributes){
+    @GetMapping("/department/update")
+    public String updateDepartment(@RequestParam Integer id, Model model, RedirectAttributes attributes){
         try {
             Department department = departmentService.updateDepartment(id);
             model.addAttribute("department", department);
             model.addAttribute("pageTitle", "Edit student (ID" + id +")");
             return "editDepartment_form";
+
         }catch (StudentNotFoundException e){
             String inform = "Department has been save successfully";
             attributes.addFlashAttribute("message", inform);
@@ -58,11 +59,12 @@ public class DepartmentController {
         return "redirect:/departments";
     }
 
-    @PutMapping("/departments/edit/{id}")
-    public String updateDepartment(@PathVariable("id") Integer id){
-        departmentService.updateDepartment(id);
+  /*  @PostMapping("/departments/update")
+    public String updateDepartment(@RequestParam Integer id, Model model){
+       Department department = departmentService.updateDepartment(id);
+       model.addAttribute("department", department);
         return "redirect:/departments";
-    }
+    } */
 
     @GetMapping("/departments/delete/{id}")
     public String showDeleteForm(@PathVariable("id") Integer id, RedirectAttributes attributes){

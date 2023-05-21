@@ -61,7 +61,7 @@
                             <td>[[${department.telephone}]]</td>
                             <td>[[${department.location}]]</td>
                             <td>
-                                <a class="btn btn-primary me-3" th:href="@{'/departments/edit/' + ${department.id}}">Update</a>
+                                <a class="btn btn-primary me-3" th:href="@{department/update(id=${department.id})}">Update</a>
                                 <a class="btn btn-danger me-3" th:href="@{'/departments/delete/' + ${department.id}}">Delete</a>
                             </td>
                         </tr>
