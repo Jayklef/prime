@@ -75,7 +75,8 @@
                     <td>
                       <a class="btn btn-primary me-3" th:href="@{'/students/edit/' + ${student.id}}">Update</a>
                       <a class="btn btn-danger me-3" th:href="@{'/students/delete/' + ${student.id}}">Delete</a>
-                      <a class="btn btn-info me-3" th:href="@{'/students/view/' + ${student.id}}">View</a>
+                     <!-- <a class="btn btn-info me-3" th:href="@{'/students/view/' + ${student.id}}">View</a> -->
+                      <a class="btn btn-info me-3" th:href="@{'/student/' + ${student.id}}">View</a>
                     </td>
                   </tr>
                 </th:block>

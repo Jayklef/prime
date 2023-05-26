@@ -2,7 +2,7 @@ package com.jayklef.prime.controller;
 
 import com.jayklef.prime.entity.Department;
 import com.jayklef.prime.entity.Student;
-import com.jayklef.prime.exception.StudentNotFoundException;
+import com.jayklef.prime.exception.ResourceNotFoundException;
 import com.jayklef.prime.service.DepartmentService;
 import com.jayklef.prime.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +66,7 @@ public class StudentController {
             model.addAttribute("student", student);
             model.addAttribute("pageTitle", "Edit student (ID" + id +")");
             return "editStudent_form";
-        }catch (StudentNotFoundException e){
+        }catch (ResourceNotFoundException exception){
             String inform = "Student has been save successfully";
             attributes.addFlashAttribute("message", inform);
         }
@@ -94,8 +94,8 @@ public class StudentController {
         try {
           studentService.deleteById(id);
           attributes.addFlashAttribute("message", "The Id " + id + " has been deleted ");
-        }catch (StudentNotFoundException e){
-            attributes.addFlashAttribute("message", e.getMessage());
+        }catch (ResourceNotFoundException exception){
+            attributes.addFlashAttribute("message", exception.getMessage());
         }
         return "redirect:/students";
     }

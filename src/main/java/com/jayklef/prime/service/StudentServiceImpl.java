@@ -1,7 +1,7 @@
 package com.jayklef.prime.service;
 
 import com.jayklef.prime.entity.Student;
-import com.jayklef.prime.exception.StudentNotFoundException;
+import com.jayklef.prime.exception.ResourceNotFoundException;
 import com.jayklef.prime.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -36,7 +35,7 @@ public class StudentServiceImpl implements StudentService {
         if (productOptional.isPresent()){
             return studentRepository.findById(id).get();
         }
-        throw new StudentNotFoundException("product with ID not found");
+        throw new ResourceNotFoundException("product with ID not found");
     }
 
     @Override
@@ -47,7 +46,7 @@ public class StudentServiceImpl implements StudentService {
         if (productOptional.isPresent()){
              studentRepository.deleteById(id);
         }
-        throw new StudentNotFoundException("product with ID " + id + " has been deleted ");
+        throw new ResourceNotFoundException("product with ID " + id + " has been deleted ");
     }
 
  /*   @Override

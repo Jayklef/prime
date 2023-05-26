@@ -1,13 +1,12 @@
 package com.jayklef.prime.service;
 
 import com.jayklef.prime.entity.Department;
-import com.jayklef.prime.exception.DepartmentNotFoundException;
+import com.jayklef.prime.exception.ResourceNotFoundException;
 import com.jayklef.prime.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -37,7 +36,7 @@ public class DepartmentServiceImpl implements DepartmentService {
             return departmentRepository.findById(id).get();
         }
 
-        throw new DepartmentNotFoundException("Department with Id" + id +" not found ");
+        throw new ResourceNotFoundException("Department with Id" + id +" not found ");
     }
 
     @Override
@@ -69,6 +68,6 @@ public class DepartmentServiceImpl implements DepartmentService {
             departmentRepository.deleteById(id);
         }
 
-        throw new DepartmentNotFoundException("Department with not found");
+        throw new ResourceNotFoundException("Department with not found");
     }
 }
